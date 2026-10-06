@@ -1,0 +1,21 @@
+SnowToolkit 2.3.2 - como compilar (Go 1.22 ou mais novo; compila no Windows, Linux ou macOS)
+
+As dependências (go-webview2, go-winloader e golang.org/x/sys) já estão na pasta app/vendor,
+então NÃO é preciso internet para compilar.
+
+1) Programa (portátil):
+   cd app
+   set CGO_ENABLED=0
+   set GOOS=windows & set GOARCH=amd64
+   go build -trimpath -ldflags "-s -w -H=windowsgui" -o SnowToolkit.exe .
+
+2) Instalador:
+   copie o SnowToolkit.exe do passo 1 para setup\payload\SnowToolkit.exe
+   cd setup
+   go build -trimpath -ldflags "-s -w -H=windowsgui" -o SnowToolkit-Setup.exe .
+
+Janela: o programa usa o WebView2 (janela própria). Sem o runtime, cai para Edge/Chrome em modo app.
+Para forçar o modo navegador: defina a variável de ambiente SNOW_BROWSER=1.
+
+Licenças das dependências: app/vendor/**/LICENSE (MIT e BSD).
+Recursos (ícone, manifesto de administrador, versão): python3 tools/mksyso.py app/rsrc_windows_amd64.syso

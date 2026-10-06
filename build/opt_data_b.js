@@ -1,0 +1,14 @@
+  /* ---------- APPS (winget) ---------- */
+  var APPGROUPS = [
+    { name: 'Navegadores', apps: [['Google.Chrome', 'Google Chrome', 'rgt'], ['Mozilla.Firefox', 'Firefox', ''], ['Brave.Brave', 'Brave', '']] },
+    { name: 'Essenciais', apps: [['7zip.7zip', '7-Zip', 'rgt'], ['VideoLAN.VLC', 'VLC', 'rgt'], ['Notepad++.Notepad++', 'Notepad++', 'rt'], ['voidtools.Everything', 'Everything (busca instantânea)', 'rt'], ['Microsoft.PowerToys', 'PowerToys', 't'], ['Bitwarden.Bitwarden', 'Bitwarden', 't'], ['SumatraPDF.SumatraPDF', 'SumatraPDF', ''], ['TheDocumentFoundation.LibreOffice', 'LibreOffice', ''], ['Obsidian.Obsidian', 'Obsidian', '']] },
+    { name: 'Desenvolvimento', apps: [['Microsoft.WindowsTerminal', 'Windows Terminal', 'rt'], ['Microsoft.PowerShell', 'PowerShell 7', 't'], ['Git.Git', 'Git', 't'], ['Microsoft.VisualStudioCode', 'Visual Studio Code', 't'], ['OpenJS.NodeJS.LTS', 'Node.js LTS', 't'], ['Python.Python.3.12', 'Python 3.12', 't'], ['Docker.DockerDesktop', 'Docker Desktop', ''], ['GitHub.GitHubDesktop', 'GitHub Desktop', ''], ['Postman.Postman', 'Postman', ''], ['WinMerge.WinMerge', 'WinMerge', 't'], ['HeidiSQL.HeidiSQL', 'HeidiSQL', '']] },
+    { name: 'T.I. e rede', apps: [['Microsoft.Sysinternals.Suite', 'Sysinternals Suite', 't'], ['WiresharkFoundation.Wireshark', 'Wireshark', 't'], ['Insecure.Nmap', 'Nmap', 't'], ['Famatech.AdvancedIPScanner', 'Advanced IP Scanner', 't'], ['PuTTY.PuTTY', 'PuTTY', 't'], ['WinSCP.WinSCP', 'WinSCP', 't'], ['TimKosse.FileZilla.Client', 'FileZilla', ''], ['RustDesk.RustDesk', 'RustDesk', 't'], ['Tailscale.Tailscale', 'Tailscale', 't'], ['AnyDesk.AnyDesk', 'AnyDesk', '']] },
+    { name: 'Hardware, disco e boot', apps: [['REALiX.HWiNFO', 'HWiNFO', 'gt'], ['CPUID.CPU-Z', 'CPU-Z', 't'], ['CPUID.HWMonitor', 'HWMonitor', ''], ['TechPowerUp.GPU-Z', 'GPU-Z', 'gt'], ['CrystalDewWorld.CrystalDiskInfo', 'CrystalDiskInfo', 'gt'], ['CrystalDewWorld.CrystalDiskMark', 'CrystalDiskMark', ''], ['WinDirStat.WinDirStat', 'WinDirStat', ''], ['AntibodySoftware.WizTree', 'WizTree', 't'], ['Wagnardsoft.DisplayDriverUninstaller', 'Display Driver Uninstaller', 'g'], ['Rufus.Rufus', 'Rufus', 't'], ['Ventoy.Ventoy', 'Ventoy', 't']] },
+    { name: 'Mídia e jogos', apps: [['Valve.Steam', 'Steam', 'g'], ['EpicGames.EpicGamesLauncher', 'Epic Games Launcher', ''], ['Discord.Discord', 'Discord', 'g'], ['OBSProject.OBSStudio', 'OBS Studio', 'g'], ['HandBrake.HandBrake', 'HandBrake', ''], ['ShareX.ShareX', 'ShareX', 't'], ['Audacity.Audacity', 'Audacity', ''], ['GIMP.GIMP', 'GIMP', ''], ['Spotify.Spotify', 'Spotify', '']] }
+  ];
+  APPGROUPS.forEach(function (g) {
+    g.apps.forEach(function (a) {
+      ITEMS.push({ id: 'a:' + a[0], cat: 'apps', group: g.name, title: a[1], desc: a[0], wid: a[0], risk: 's', p: a[2], doIt: null, undo: null, x: false });
+    });
+  });
