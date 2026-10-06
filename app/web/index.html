@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SnowToolkit</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23140e2a'/%3E%3Cpath d='M16 5v22M6.5 10.5l19 11M6.5 21.5l19-11' stroke='%238fe0ff' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <aside id="side">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 38 38" fill="none" stroke="#8fe0ff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M19 4v30M6 11.5l26 15M6 26.5l26-15"/><path d="M15 6.5l4 3 4-3M15 31.5l4-3 4 3M5.5 15.5l5 1 1-5M32.5 22.5l-5-1-1 5M5.5 22.5l5-1 1 5M32.5 15.5l-5 1-1-5"/></svg>
+      <div><b>SnowToolkit</b><small id="ver">Central de T.I.</small></div>
+    </div>
+    <nav id="nav" aria-label="Navegação"></nav>
+    <div class="side-f"><div id="admin-badge"></div><div class="row" style="gap:6px"><span class="kbd">Ctrl</span><span class="kbd">K</span><span>buscar e executar</span></div><div class="credit">Criado por <b>Guilherme Souto</b></div></div>
+  </aside>
+  <div id="main">
+    <header id="top">
+      <div class="grow"><h1 id="ttl">Painel</h1><div class="sub" id="sub"></div></div>
+      <span class="badge" id="host-badge"></span>
+      <button class="btn" id="jobs-btn" title="Console de execução"><span class="dot" id="jobs-dot"></span><span id="jobs-txt">Console</span></button>
+    </header>
+    <main id="view"></main>
+    <section id="dock" aria-label="Console de execução">
+      <div class="dock-grip" id="grip"></div>
+      <div class="dock-h">
+        <div class="dock-tabs" id="dtabs"></div>
+        <button class="btn sm ghost" id="d-cancel">Cancelar</button>
+        <button class="btn sm ghost" id="d-copy">Copiar</button>
+        <button class="btn sm ghost" id="d-save">Salvar log</button>
+        <button class="btn sm ghost" id="d-clear">Limpar</button>
+        <button class="btn sm ghost" id="d-min" title="Recolher">&#x2193;</button>
+      </div>
+      <div id="dock-body" tabindex="0"></div>
+    </section>
+  </div>
+</div>
+<div id="toasts" aria-live="polite"></div>
+<script src="core.js"></script>
+<script src="optimize.js"></script>
+<script src="apps_catalog.js"></script>
+<script src="pages1.js"></script>
+<script src="pages2.js"></script>
+<script src="pages3.js"></script>
+<script src="pages4.js"></script>
+<script src="pages5.js"></script>
+<script src="boot.js"></script>
+</body>
+</html>
