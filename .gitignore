@@ -1,0 +1,4 @@
+   *.exe
+   setup/payload/*.exe
+   out/
+   *.log
