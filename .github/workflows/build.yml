@@ -1,0 +1,82 @@
+name: Build SnowToolkit
+
+# A cada commit na main: confere o código, compila o programa e o instalador e
+# publica tudo na release "latest" (link fixo para baixar, e é dela que o
+# próprio SnowToolkit se atualiza). Não precisa compilar nada no seu PC.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - "COMPILAR.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+
+      - name: Número da versão (build)
+        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+
+      - name: Checar o código e rodar os testes
+        working-directory: app
+        run: |
+          go vet ./...
+          go test ./...
+
+      - name: Compilar o programa (Windows 64 bits)
+        working-directory: app
+        env:
+          CGO_ENABLED: "0"
+          GOOS: windows
+          GOARCH: amd64
+        run: go build -trimpath -ldflags "-s -w -H=windowsgui -X main.buildID=${SHORT_SHA}" -o ../SnowToolkit.exe .
+
+      - name: Compilar o instalador (Setup)
+        working-directory: setup
+        env:
+          CGO_ENABLED: "0"
+          GOOS: windows
+          GOARCH: amd64
+        run: |
+          mkdir -p payload
+          cp ../SnowToolkit.exe payload/SnowToolkit.exe
+          go build -trimpath -ldflags "-s -w -H=windowsgui" -o ../SnowToolkit-Setup.exe .
+
+      - name: Hashes (SHA256SUMS.txt)
+        run: sha256sum SnowToolkit.exe SnowToolkit-Setup.exe > SHA256SUMS.txt
+
+      - name: Guardar os arquivos (aba Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: SnowToolkit
+          path: |
+            SnowToolkit.exe
+            SnowToolkit-Setup.exe
+            SHA256SUMS.txt
+
+      - name: Publicar na release "latest" (link fixo)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag --repo "$GITHUB_REPOSITORY" || true
+          gh release create latest SnowToolkit.exe SnowToolkit-Setup.exe SHA256SUMS.txt \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "SnowToolkit (build $SHORT_SHA)" \
+            --notes "build:$SHORT_SHA — baixe o SnowToolkit-Setup.exe (instalador) ou o SnowToolkit.exe (portátil). Hashes em SHA256SUMS.txt." \
+            --latest
