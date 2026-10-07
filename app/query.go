@@ -15,7 +15,7 @@ import (
 )
 
 var queryTimeout = map[string]time.Duration{
-	"bigfolders": 15 * time.Minute, "updates": 6 * time.Minute, "netscan": 2 * time.Minute,
+	"bigfolders": 15 * time.Minute, "cleanscan": 10 * time.Minute, "updates": 6 * time.Minute, "netscan": 2 * time.Minute,
 	"winget_upgrades": 4 * time.Minute, "winget_search": 3 * time.Minute, "events": 3 * time.Minute,
 	"failed_logins": 3 * time.Minute, "remote_info": 90 * time.Second, "reboots": 3 * time.Minute, "bsod": 2 * time.Minute,
 }

@@ -5,7 +5,7 @@
 
   var NAV = [
     ['Visão geral', ['dashboard']],
-    ['Manutenção', ['optimize', 'repair', 'system', 'storage', 'diskmap', 'programs']],
+    ['Manutenção', ['optimize', 'repair', 'system', 'storage', 'cleaner', 'diskmap', 'programs']],
     ['Infraestrutura', ['network', 'machines', 'printers', 'users']],
     ['Segurança e diagnóstico', ['security', 'logs']],
     ['Ferramentas', ['terminal', 'unattend', 'shortcuts', 'reports', 'about']]

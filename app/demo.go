@@ -131,6 +131,18 @@ func demoQuery(id string, p map[string]string) []byte {
 	case "updates":
 		return jb(M{"ok": true, "updates": []M{{"title": "2026-09 Atualização Cumulativa do Windows 11 (KB5043080)", "kb": "5043080", "sizeMB": 812.4, "mandatory": false, "driver": false, "cats": "Atualizações de Segurança"},
 			{"title": "Intel - Net - 22.250.1.2", "kb": "", "sizeMB": 14.2, "mandatory": false, "driver": true, "cats": "Drivers"}}})
+	case "cleanscan":
+		return jb(M{"ok": true, "admin": true, "free": 81.2e9, "items": []M{
+			{"id": "temp_user", "group": "Sistema", "label": "Temporários do usuário", "desc": "Arquivos da pasta Temp com mais de 1 dia.", "risk": "safe", "admin": false, "readonly": false, "special": "", "bytes": 1.4e9, "files": 5231, "running": []string{}},
+			{"id": "temp_win", "group": "Sistema", "label": "Temporários do Windows", "desc": "C:\\Windows\\Temp, apenas arquivos com mais de 1 dia.", "risk": "safe", "admin": true, "readonly": false, "special": "", "bytes": 310e6, "files": 812, "running": []string{}},
+			{"id": "recycle", "group": "Sistema", "label": "Lixeira", "desc": "Esvazia a lixeira de todos os discos.", "risk": "medium", "admin": false, "readonly": false, "special": "recycle", "bytes": 2.2e9, "files": 143, "running": []string{}},
+			{"id": "winupdate", "group": "Sistema", "label": "Cache do Windows Update", "desc": "Arquivos já baixados de atualizações.", "risk": "medium", "admin": true, "readonly": false, "special": "", "bytes": 3.8e9, "files": 640, "running": []string{}},
+			{"id": "dism", "group": "Sistema", "label": "Componentes antigos do Windows (WinSxS)", "desc": "Roda DISM /StartComponentCleanup.", "risk": "careful", "admin": true, "readonly": false, "special": "dism", "bytes": -1, "files": 0, "running": []string{}},
+			{"id": "winold", "group": "Sistema", "label": "Windows.old (instalação anterior)", "desc": "Só informativo.", "risk": "careful", "admin": true, "readonly": true, "special": "", "bytes": 21e9, "files": 120000, "running": []string{}},
+			{"id": "br_chrome", "group": "Navegadores", "label": "Google Chrome (cache)", "desc": "Somente cache de páginas. Feche o navegador antes.", "risk": "safe", "admin": false, "readonly": false, "special": "", "bytes": 1.1e9, "files": 9120, "running": []string{"chrome"}},
+			{"id": "br_edge", "group": "Navegadores", "label": "Microsoft Edge (cache)", "desc": "Somente cache de páginas. Feche o navegador antes.", "risk": "safe", "admin": false, "readonly": false, "special": "", "bytes": 420e6, "files": 3300, "running": []string{}},
+			{"id": "app_discord", "group": "Aplicativos", "label": "Discord (cache)", "desc": "Cache de imagens e código.", "risk": "safe", "admin": false, "readonly": false, "special": "", "bytes": 640e6, "files": 2100, "running": []string{}},
+			{"id": "dev_npm", "group": "Desenvolvimento", "label": "Cache do npm", "desc": "Pacotes baixados.", "risk": "medium", "admin": false, "readonly": false, "special": "", "bytes": 980e6, "files": 18000, "running": []string{}}}})
 	case "bigfolders":
 		root := p["PATH"]
 		if root == "" {
