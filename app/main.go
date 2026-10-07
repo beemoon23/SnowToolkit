@@ -60,6 +60,8 @@ func main() {
 	port := flag.Int("port", 0, "porta local (0 = automatica)")
 	flag.Parse()
 
+	cleanupOldExe() // apaga restos de uma atualização anterior
+
 	app := &App{Token: newToken(), Demo: *demo, started: time.Now(), quit: make(chan struct{}), querySem: make(chan struct{}, 4)}
 	app.DataDir = resolveDataDir()
 	app.jobs = newJobManager(app)

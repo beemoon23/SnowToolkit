@@ -21,12 +21,23 @@ Caixa de ferramentas de T.I. para Windows, criada por **Guilherme Souto**, num �
 
 ## Instalar
 
-Baixe em **Releases**:
+Baixe sempre a versão mais recente (a release **latest**, atualizada a cada commit):
 
-- `SnowToolkit-Setup.exe`: instala, cria atalhos e instala o runtime WebView2 se faltar
-- `SnowToolkit.exe`: versão portátil (pede administrador)
+- [`SnowToolkit-Setup.exe`](https://github.com/beemoon23/SnowToolkit/releases/latest/download/SnowToolkit-Setup.exe): instala, cria atalhos e instala o runtime WebView2 se faltar
+- [`SnowToolkit.exe`](https://github.com/beemoon23/SnowToolkit/releases/latest/download/SnowToolkit.exe): versão portátil (pede administrador)
 
 Confira os hashes em `SHA256SUMS.txt`.
+
+### Atualização automática
+
+Ao abrir, o programa confere no GitHub se há build novo e pergunta "Atualizar agora?". Também dá para
+forçar em **Sobre → Verificar atualização**. Ele baixa o `.exe`, confere o SHA-256, troca o próprio
+arquivo e reabre sozinho. Cópias compiladas fora do GitHub (sem código de build) não se atualizam.
+
+### Como o GitHub compila e publica
+
+A cada commit na `main`, o workflow **Build SnowToolkit** (aba **Actions**) roda `go vet` e os testes,
+compila o programa e o instalador e recria a release **latest**. Não é preciso compilar no PC.
 
 ## Compilar
 

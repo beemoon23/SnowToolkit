@@ -125,6 +125,7 @@
       $('#admin-badge').appendChild(a.admin ? h('span', { class: 'badge ok' }, 'Administrador') : h('span', { class: 'badge warn', title: 'Execute como administrador para todas as funções' }, 'Sem privilégios de admin'));
     }).catch(function () { });
     SN.store.load().then(function () { buildNav(); route(); });
+    setTimeout(function () { if (SN.checkUpdate) SN.checkUpdate(false); }, 4000);
     setInterval(beat, 4000); beat();
     window.addEventListener('error', function (e) { console.error('Erro na interface:', e.message); });
   }

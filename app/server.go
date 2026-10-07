@@ -88,6 +88,7 @@ func (a *App) routes(static http.Handler) http.Handler {
 	mux.HandleFunc("GET /api/about", a.guard(func(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{"version": Version, "port": a.Port, "dataDir": a.DataDir, "demo": a.Demo, "admin": isAdmin(), "os": runtime.GOOS, "pid": os.Getpid()})
 	}))
+	a.updateRoutes(mux)
 	mux.HandleFunc("POST /api/shutdown", a.guard(func(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{"ok": true})
 		go func() {
